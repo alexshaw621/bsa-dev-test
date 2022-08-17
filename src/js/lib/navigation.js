@@ -1,22 +1,24 @@
 (function () {
-    const siteNavigation = document.getElementById('navigation');
+	const siteNavigation = document.getElementById('navigation');
 	const mobileNavTrigger = document.getElementById('navigation-header-mobile-toggle');
 	const mobileNavTriggerTitle = document.getElementById('navigation-header-mobile-toggle-title');
 	const submenuToggleButtons = document.querySelectorAll('.navigation-menu__submenu-toggle');
-    let mobileMenuOpen = false;
+	const footerScrollTop = document.querySelector('.footer-navigation__to-top');
+	const navMenuLinks = document.querySelectorAll('.navigation-menu__link');
+	let mobileMenuOpen = false;
 
-    // Mobile Menu Toggle Active
-    function toggleMobileActive () {
-	    siteNavigation.classList.toggle('navigation--mobile-active');
+	// Mobile Menu Toggle Active
+	function toggleMobileActive () {
+		siteNavigation.classList.toggle('navigation--mobile-active');
 		mobileNavTriggerTitle.innerHTML = mobileMenuOpen ? 'Close' : 'Menu';
 	}
 
-    // Toggle Submenu Elements
-    function toggleSubmenuActive (submenuParent) {
+	// Toggle Submenu Elements
+	function toggleSubmenuActive (submenuParent) {
 		submenuParent.classList.toggle('navigation-menu__item--submenu-active');
 	}
 
-    // Adding Event Listeners to Touch and Click Events
+	// Adding Event Listeners to Touch and Click Events
 	function setupClickEventListener (element, functionCall) {
 		if (typeof window.ontouchstart === 'undefined') {
 			element.addEventListener('click', functionCall)
@@ -25,7 +27,7 @@
 		}
 	}
 
-    // Set Sticky Navigation on Scroll
+	// Set Sticky Navigation on Scroll
 	function setStickyNav (currentScroll) {
 		if (currentScroll > 0) {
 			siteNavigation.classList.add('navigation--sticky')
@@ -34,24 +36,62 @@
 		}
 	}
 
-    // Add Event Listener to Window to Check if Navigation Has Scrolled
+	// Add Event Listener to Window to Check if Navigation Has Scrolled
 	function handleScroll () {
 		const currentScroll = document.scrollingElement ? document.scrollingElement.scrollTop : document.documentElement.scrollTop
 
 		setStickyNav(currentScroll)
 	}
 
-    // Initialize Mobile Menu Toggle Event
+	// Initialize Mobile Menu Toggle Event
 	setupClickEventListener(mobileNavTrigger, toggleMobileActive)
 
-    // Initialize Submenu Toggle Event
-    for(let i = 0; i < submenuToggleButtons.length;  i++) {
-        setupClickEventListener(submenuToggleButtons[i], () => {
-			const submenuParent = submenuToggleButtons[i].closest('.navigation-menu__item--has-submenu')
-			toggleSubmenuActive(submenuParent)
-		})
-    }
+	// Initialize Submenu Toggle Event
+	for(let i = 0; i < submenuToggleButtons.length;  i++) {
+			setupClickEventListener(submenuToggleButtons[i], () => {
+		const submenuParent = submenuToggleButtons[i].closest('.navigation-menu__item--has-submenu')
+		toggleSubmenuActive(submenuParent)
+	})
+	}
 
-    // Add Event Listener to Window to Check if Navigation Has Scrolled
-    window.addEventListener('scroll', handleScroll)
+	// Add Event Listener to Window to Check if Navigation Has Scrolled
+	window.addEventListener('scroll', handleScroll)
+
+	footerScrollTop.addEventListener('click', (e) => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		});
+	})
+
+	navMenuLinks.forEach((link) => {
+		link.addEventListener('click', (e) => {
+			const href = link.getAttribute("href");
+			if (href.indexOf('#') == 0) {
+				const targetElement = document.querySelector(href);
+
+				if (targetElement) {
+					e.preventDefault()
+					window.scrollTo({
+						top: targetElement.offsetTop,
+						behavior: "smooth"
+					});
+				}
+			}
+		})
+	})
+
+	document.addEventListener("DOMContentLoaded", (e) => {
+		if (window.location.hash) {
+			const targetElement = document.querySelector(window.location.hash);
+
+			if (targetElement) {
+				e.preventDefault()
+				window.scrollTo({
+					top: targetElement.offsetTop,
+					behavior: "smooth"
+				});
+			}
+		}
+	})
 })();

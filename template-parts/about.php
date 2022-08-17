@@ -20,15 +20,15 @@
 		<p class="about-content__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
 	</div>
 	<div class="about__cards about-cards">
-        <?php for($i = 1; $i < 5; $i++) : ?>
+		<?php for($i = 1; $i <= 5; $i++) : ?>
 			<article class="card-item">
-	        	<div class="card-item__decoration card-item-decoration" aria-hidden="true">
-	        		<span class="card-item-decoration__text"><?php echo '00' . $i; ?></span>
-	        	</div>
-	        	<img src="dist/images/about/icon.svg" alt="" class="card-item__icon">
-	        	<h3 class="card-item__title">Safety</h3>
-	        	<p class="card-item__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	        </article>
+				<div class="card-item__decoration card-item-decoration" aria-hidden="true">
+					<span class="card-item-decoration__text"><?php echo '00' . $i; ?></span>
+				</div>
+				<img src="dist/images/about/icon.svg" alt="" class="card-item__icon">
+				<h3 class="card-item__title">Safety</h3>
+				<p class="card-item__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</article>
 		<?php endfor; ?>
 	</div>
 </section>

@@ -211,14 +211,29 @@
 			@include media('>desktop-small') {
 				width: 47%;
 				margin-bottom: rem-calc(52);
+
+				&:nth-child(2n + 2) {
+					margin-top: rem-calc(52);
+					margin-bottom: 0;
+				}
 			}
 
 			@include media('>desktop-medium') {
 				margin-bottom: rem-calc(66);
+
+				&:nth-child(2n + 2) {
+					margin-top: rem-calc(66);
+					margin-bottom: 0;
+				}
 			}
 
 			@include media('>desktop-large') {
 				margin-bottom: rem-calc(84);
+
+				&:nth-child(2n + 2) {
+					margin-top: rem-calc(84);
+					margin-bottom: 0;
+				}
 			}
 
 			&:last-child {

@@ -829,6 +829,11 @@
 	&__indicator {
 		font-size: rem-calc(14);
 		letter-spacing: 0.17px;
+		color: $color-pumpkin;
+
+		@include media('>phone-small') {
+			color: inherit;
+		}
 	}
 
 	&__label {

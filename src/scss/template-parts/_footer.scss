@@ -299,6 +299,8 @@
 
 
 	&__list {
+		display: flex;
+		
 		&-item {
 			@extend %arrow-block-button;
 

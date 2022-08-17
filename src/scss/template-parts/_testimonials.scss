@@ -480,6 +480,8 @@
 	}
 
 	&__item {
+		background-color: #FFFFFF;
+		
 		@include media('<=tablet') {
 			transform-origin: center;
 			transition: 0.35s ease transform;
